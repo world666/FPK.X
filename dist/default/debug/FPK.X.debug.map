@@ -1,4 +1,4 @@
-Microchip Technology Inc, v¸‚e
+Microchip Technology Inc, v8ˆ2
 
 Tool Name:
   c:\program files\microchip\xc16\v1.21\bin\bin\..\bin/elf-ld.exe
@@ -6,7 +6,7 @@ Tool Name:
 Command:
   -p30F6012A \
   -o \
-  dist/default/production/FPK.X.production.elf \
+  dist/default/debug/FPK.X.debug.elf \
   -Lc:/program files/microchip/xc16/v1.21/bin/bin/.. \
   -Lc:/program files/microchip/xc16/v1.21/bin/bin/../../lib \
   -Lc:/program files/microchip/xc16/v1.21/bin/bin/../../lib/PIC24E \
@@ -21,14 +21,21 @@ Command:
   -Lc:/program files/microchip/xc16/v1.21/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC33F \
   -Lc:/program files/microchip/xc16/v1.21/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/Can.o \
-  build/default/production/CanOpen.o \
-  build/default/production/main.o \
-  build/default/production/Fat.o \
-  build/default/production/Parameters.o \
-  build/default/production/Majorization.o \
+  build/default/debug/Can.o \
+  build/default/debug/CanOpen.o \
+  build/default/debug/main.o \
+  build/default/debug/Fat.o \
+  build/default/debug/Parameters.o \
+  build/default/debug/Majorization.o \
+  -TC:\Users\0982~1\AppData\Local\Temp\tmp000014d8.00 \
+  -TC:\Users\0982~1\AppData\Local\Temp\tmp000014d8.01 \
+  -TC:\Users\0982~1\AppData\Local\Temp\tmp000014d8.02 \
+  -TC:\Users\0982~1\AppData\Local\Temp\tmp000014d8.03 \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp30F6012A.gld.00 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  --defsym=__MPLAB_DEBUGGER_ICD3=1 \
+  -Tp30F6012A.gld.04 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -40,7 +47,7 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/FPK.X.production.map \
+  -Map=dist/default/debug/FPK.X.debug.map \
   --report-mem \
   -start-group \
   --library=fx-elf \
@@ -52,47 +59,47 @@ Command:
 Archive member included because of file (symbol)
 
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1Initialize.o)
-                              build/default/production/Can.o (_CAN1Initialize)
+                              build/default/debug/Can.o (_CAN1Initialize)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1ReceiveMessage.o)
-                              build/default/production/Can.o (_CAN1ReceiveMessage)
+                              build/default/debug/Can.o (_CAN1ReceiveMessage)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1SendMessage.o)
-                              build/default/production/Can.o (_CAN1SendMessage)
+                              build/default/debug/Can.o (_CAN1SendMessage)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1SetFilter.o)
-                              build/default/production/Can.o (_CAN1SetFilter)
+                              build/default/debug/Can.o (_CAN1SetFilter)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1SetMask.o)
-                              build/default/production/Can.o (_CAN1SetMask)
+                              build/default/debug/Can.o (_CAN1SetMask)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1SetOperationMode.o)
-                              build/default/production/Can.o (_CAN1SetOperationMode)
+                              build/default/debug/Can.o (_CAN1SetOperationMode)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1SetRXMode.o)
-                              build/default/production/Can.o (_CAN1SetRXMode)
+                              build/default/debug/Can.o (_CAN1SetRXMode)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1SetTXMode.o)
-                              build/default/production/Can.o (_CAN1SetTXMode)
+                              build/default/debug/Can.o (_CAN1SetTXMode)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(ConfigIntCAN1.o)
-                              build/default/production/Can.o (_ConfigIntCAN1)
+                              build/default/debug/Can.o (_ConfigIntCAN1)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(OpenSPI2.o)
-                              build/default/production/main.o (_OpenSPI2)
+                              build/default/debug/main.o (_OpenSPI2)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libpic30-elf.a(crt0_standard.o)
                               (__resetPRI)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libpic30-elf.a(data_init_standard.o)
                               c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libpic30-elf.a(crt0_standard.o) (__data_init_standard)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(ceilf.eo)
-                              build/default/production/Parameters.o (_ceilf)
+                              build/default/debug/Parameters.o (_ceilf)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(divsf3.eo)
-                              build/default/production/Parameters.o (___divsf3)
+                              build/default/debug/Parameters.o (___divsf3)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(divsi3.eo)
-                              build/default/production/main.o (___divsi3)
+                              build/default/debug/main.o (___divsi3)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(fchop.eo)
                               c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(ceilf.eo) (__fchop)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(feqltle.eo)
-                              build/default/production/Parameters.o (___ltsf2)
+                              build/default/debug/Parameters.o (___ltsf2)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(fixsfsi.eo)
-                              build/default/production/Parameters.o (_(float, int, long long, short, float, short, int))
+                              build/default/debug/Parameters.o (_(float, int, long long, short, float, short, int))
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(fixunssfsi.eo)
-                              build/default/production/Parameters.o (___fixunssfsi)
+                              build/default/debug/Parameters.o (___fixunssfsi)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(floatsisf.eo)
-                              build/default/production/Parameters.o (___floatsisf)
+                              build/default/debug/Parameters.o (___floatsisf)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
-                              build/default/production/Parameters.o (___floatunsisf)
+                              build/default/debug/Parameters.o (___floatunsisf)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(fpack.eo)
                               c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(divsf3.eo) (__fpack)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(funpack.eo)
@@ -102,7 +109,7 @@ c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(funpack2.eo)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(futil.eo)
                               c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(divsf3.eo) (__fPropagateNaN)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(modsi3.eo)
-                              build/default/production/main.o (___modsi3)
+                              build/default/debug/main.o (___modsi3)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
                               c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(divsi3.eo) (___udivsi3)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(umodsi3.eo)
@@ -116,11 +123,11 @@ c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(floatdisf.eo)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
                               c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a(floatunsisf.eo) (___floatundisf)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libc-elf.a(memcpy.eo)
-                              build/default/production/main.o (_memcpy)
+                              build/default/debug/main.o (_memcpy)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libc-elf.a(strcat.eo)
-                              build/default/production/CanOpen.o (_strcat)
+                              build/default/debug/CanOpen.o (_strcat)
 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libc-elf.a(strlen.eo)
-                              build/default/production/main.o (_strlen)
+                              build/default/debug/main.o (_strlen)
 
 
 Program Memory  [Origin = 0x100, Length = 0x17efe]
@@ -139,12 +146,16 @@ Data Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0            0xce  (206)
-.ndata                       0x8ce                   0             0xc  (12)
-.nbss                        0x8da                   0             0x8  (8)
-.ndata                       0x8e2                   0             0x4  (4)
+reserve_data_0x800           0x800                0x1f            0x20  (32)
+reserve_data_0x820           0x820                 0x1             0x2  (2)
+reserve_data_0x822           0x822                 0x1             0x2  (2)
+reserve_data_0x824           0x824                0x2b            0x2c  (44)
+.nbss                        0x850                   0            0xce  (206)
+.ndata                       0x91e                   0             0xc  (12)
+.nbss                        0x92a                   0             0x8  (8)
+.ndata                       0x932                   0             0x4  (4)
 
-                        Total data memory used (bytes):           0xe6  (230) 2%
+                        Total data memory used (bytes):          0x136  (310) 3%
 
 
 Dynamic Memory Usage
@@ -152,36 +163,36 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x8e6                              0x1f1a  (7962)
+stack                        0x936                              0x1eca  (7882)
 
-                        Maximum dynamic memory (bytes):         0x1f1a  (7962)
+                        Maximum dynamic memory (bytes):         0x1eca  (7882)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  _canOpenCodtDomainBlock
-                    0x08c8                  _canOpenCodtDomainLength
-                    0x08ca                  _canOpenIndex
-                    0x08cc                  _canOpenSubIndex
-                    0x08ce                  _s
-                    0x08da                  __nodeId
-                    0x08dc                  __leadingController
-                    0x08de                  __accuracy
-                    0x08e2                  _canOpenCodtDomainCurrentPosition
-                    0x08e4                  _maj_i
+                    0x0850                  _canOpenCodtDomainBlock
+                    0x0918                  _canOpenCodtDomainLength
+                    0x091a                  _canOpenIndex
+                    0x091c                  _canOpenSubIndex
+                    0x091e                  _s
+                    0x092a                  __nodeId
+                    0x092c                  __leadingController
+                    0x092e                  __accuracy
+                    0x0932                  _canOpenCodtDomainCurrentPosition
+                    0x0934                  _maj_i
 
 External Symbols in Data Memory (by name):
 
-                    0x08de                  __accuracy
-                    0x08dc                  __leadingController
-                    0x08da                  __nodeId
-                    0x0800                  _canOpenCodtDomainBlock
-                    0x08e2                  _canOpenCodtDomainCurrentPosition
-                    0x08c8                  _canOpenCodtDomainLength
-                    0x08ca                  _canOpenIndex
-                    0x08cc                  _canOpenSubIndex
-                    0x08e4                  _maj_i
-                    0x08ce                  _s
+                    0x092e                  __accuracy
+                    0x092c                  __leadingController
+                    0x092a                  __nodeId
+                    0x0850                  _canOpenCodtDomainBlock
+                    0x0932                  _canOpenCodtDomainCurrentPosition
+                    0x0918                  _canOpenCodtDomainLength
+                    0x091a                  _canOpenIndex
+                    0x091c                  _canOpenSubIndex
+                    0x0934                  _maj_i
+                    0x091e                  _s
 
 External Symbols in Program Memory (by address):
 
@@ -428,13 +439,40 @@ FICD             0xf8000c           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/Can.o
-LOAD build/default/production/CanOpen.o
-LOAD build/default/production/main.o
-LOAD build/default/production/Fat.o
-LOAD build/default/production/Parameters.o
-LOAD build/default/production/Majorization.o
+LOAD build/default/debug/Can.o
+LOAD build/default/debug/CanOpen.o
+LOAD build/default/debug/main.o
+LOAD build/default/debug/Fat.o
+LOAD build/default/debug/Parameters.o
+LOAD build/default/debug/Majorization.o
+
+reserve_data_0x800
+                    0x0800         0x20
+                  0x000800          0x2 SHORT 0x0
+                    0x0820                  . = 0x20
+ *fill*             0x0801         0x1f00
+
+reserve_data_0x820
+                    0x0820          0x2
+                  0x000820          0x2 SHORT 0x0
+                    0x0822                  . = 0x2
+ *fill*             0x0821          0x100
+
+reserve_data_0x822
+                    0x0822          0x2
+                  0x000822          0x2 SHORT 0x0
+                    0x0824                  . = 0x2
+ *fill*             0x0823          0x100
+
+reserve_data_0x824
+                    0x0824         0x2c
+                  0x000824          0x2 SHORT 0x0
+                    0x0850                  . = 0x2c
+ *fill*             0x0825         0x2b00
                     0x0001                  __MPLAB_BUILD = 0x1
+                    0x0001                  __MPLAB_DEBUG = 0x1
+                    0x0001                  __DEBUG = 0x1
+                    0x0001                  __MPLAB_DEBUGGER_ICD3 = 0x1
 LOAD c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a
                     0x8005c0                  __FUID0 = 0x8005c0
                     0x8005c2                  __FUID1 = 0x8005c2
@@ -614,49 +652,49 @@ userdata
 
 .debug_info       0x000000       0x459f
  *(.debug_info)
- .debug_info      0x000000        0x385 build/default/production/Can.o
- .debug_info      0x000385        0xa18 build/default/production/CanOpen.o
- .debug_info      0x000d9d       0x2130 build/default/production/main.o
- .debug_info      0x002ecd        0x844 build/default/production/Fat.o
- .debug_info      0x003711        0x8b6 build/default/production/Parameters.o
- .debug_info      0x003fc7        0x5d8 build/default/production/Majorization.o
+ .debug_info      0x000000        0x385 build/default/debug/Can.o
+ .debug_info      0x000385        0xa18 build/default/debug/CanOpen.o
+ .debug_info      0x000d9d       0x2130 build/default/debug/main.o
+ .debug_info      0x002ecd        0x844 build/default/debug/Fat.o
+ .debug_info      0x003711        0x8b6 build/default/debug/Parameters.o
+ .debug_info      0x003fc7        0x5d8 build/default/debug/Majorization.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x92f
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xe1 build/default/production/Can.o
- .debug_abbrev    0x0000e1        0x1dd build/default/production/CanOpen.o
- .debug_abbrev    0x0002be        0x234 build/default/production/main.o
- .debug_abbrev    0x0004f2        0x14f build/default/production/Fat.o
- .debug_abbrev    0x000641        0x185 build/default/production/Parameters.o
- .debug_abbrev    0x0007c6        0x169 build/default/production/Majorization.o
+ .debug_abbrev    0x000000         0xe1 build/default/debug/Can.o
+ .debug_abbrev    0x0000e1        0x1dd build/default/debug/CanOpen.o
+ .debug_abbrev    0x0002be        0x234 build/default/debug/main.o
+ .debug_abbrev    0x0004f2        0x14f build/default/debug/Fat.o
+ .debug_abbrev    0x000641        0x185 build/default/debug/Parameters.o
+ .debug_abbrev    0x0007c6        0x169 build/default/debug/Majorization.o
 
 .debug_line       0x000000       0x203e
  *(.debug_line)
- .debug_line      0x000000        0x169 build/default/production/Can.o
- .debug_line      0x000169        0x8bb build/default/production/CanOpen.o
- .debug_line      0x000a24        0x820 build/default/production/main.o
- .debug_line      0x001244        0x4e4 build/default/production/Fat.o
- .debug_line      0x001728        0x696 build/default/production/Parameters.o
- .debug_line      0x001dbe        0x280 build/default/production/Majorization.o
+ .debug_line      0x000000        0x169 build/default/debug/Can.o
+ .debug_line      0x000169        0x8bb build/default/debug/CanOpen.o
+ .debug_line      0x000a24        0x820 build/default/debug/main.o
+ .debug_line      0x001244        0x4e4 build/default/debug/Fat.o
+ .debug_line      0x001728        0x696 build/default/debug/Parameters.o
+ .debug_line      0x001dbe        0x280 build/default/debug/Majorization.o
 
 .debug_frame      0x000000        0x478
  *(.debug_frame)
- .debug_frame     0x000000         0x44 build/default/production/Can.o
- .debug_frame     0x000044         0xe4 build/default/production/CanOpen.o
- .debug_frame     0x000128        0x154 build/default/production/main.o
- .debug_frame     0x00027c         0xf4 build/default/production/Fat.o
- .debug_frame     0x000370         0xa4 build/default/production/Parameters.o
- .debug_frame     0x000414         0x64 build/default/production/Majorization.o
+ .debug_frame     0x000000         0x44 build/default/debug/Can.o
+ .debug_frame     0x000044         0xe4 build/default/debug/CanOpen.o
+ .debug_frame     0x000128        0x154 build/default/debug/main.o
+ .debug_frame     0x00027c         0xf4 build/default/debug/Fat.o
+ .debug_frame     0x000370         0xa4 build/default/debug/Parameters.o
+ .debug_frame     0x000414         0x64 build/default/debug/Majorization.o
 
 .debug_str        0x000000        0x44c
  *(.debug_str)
- .debug_str       0x000000          0xb build/default/production/Can.o
- .debug_str       0x00000b        0x1b3 build/default/production/CanOpen.o
- .debug_str       0x0001be         0xdf build/default/production/main.o
- .debug_str       0x00029d         0x6b build/default/production/Fat.o
- .debug_str       0x000308         0xfc build/default/production/Parameters.o
- .debug_str       0x000404         0x48 build/default/production/Majorization.o
+ .debug_str       0x000000          0xb build/default/debug/Can.o
+ .debug_str       0x00000b        0x1b3 build/default/debug/CanOpen.o
+ .debug_str       0x0001be         0xdf build/default/debug/main.o
+ .debug_str       0x00029d         0x6b build/default/debug/Fat.o
+ .debug_str       0x000308         0xfc build/default/debug/Parameters.o
+ .debug_str       0x000404         0x48 build/default/debug/Majorization.o
 
 .debug_loc
  *(.debug_loc)
@@ -668,17 +706,17 @@ userdata
                   0x000000        0x646
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x4e build/default/production/Can.o
+                  0x000000         0x4e build/default/debug/Can.o
  .debug_pubnames
-                  0x00004e        0x1b0 build/default/production/CanOpen.o
+                  0x00004e        0x1b0 build/default/debug/CanOpen.o
  .debug_pubnames
-                  0x0001fe        0x1a8 build/default/production/main.o
+                  0x0001fe        0x1a8 build/default/debug/main.o
  .debug_pubnames
-                  0x0003a6        0x156 build/default/production/Fat.o
+                  0x0003a6        0x156 build/default/debug/Fat.o
  .debug_pubnames
-                  0x0004fc         0xd5 build/default/production/Parameters.o
+                  0x0004fc         0xd5 build/default/debug/Parameters.o
  .debug_pubnames
-                  0x0005d1         0x75 build/default/production/Majorization.o
+                  0x0005d1         0x75 build/default/debug/Majorization.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -686,17 +724,17 @@ userdata
 .debug_aranges    0x000000         0x90
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/Can.o
+                  0x000000         0x18 build/default/debug/Can.o
  .debug_aranges
-                  0x000018         0x18 build/default/production/CanOpen.o
+                  0x000018         0x18 build/default/debug/CanOpen.o
  .debug_aranges
-                  0x000030         0x18 build/default/production/main.o
+                  0x000030         0x18 build/default/debug/main.o
  .debug_aranges
-                  0x000048         0x18 build/default/production/Fat.o
+                  0x000048         0x18 build/default/debug/Fat.o
  .debug_aranges
-                  0x000060         0x18 build/default/production/Parameters.o
+                  0x000060         0x18 build/default/debug/Parameters.o
  .debug_aranges
-                  0x000078         0x18 build/default/production/Majorization.o
+                  0x000078         0x18 build/default/debug/Majorization.o
 
 .ivt              0x000004         0x7c
                   0x000004          0x4 LONG 0x1bc DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -1829,7 +1867,7 @@ LOAD c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libpic30-elf.a
 LOAD c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libc-elf.a
 END GROUP
-OUTPUT(dist/default/production/FPK.X.production.elf elf32-pic30)
+OUTPUT(dist/default/debug/FPK.X.debug.elf elf32-pic30)
 LOAD jump_table
 LOAD default_isr
 LOAD data_init
@@ -1837,32 +1875,32 @@ LOAD data_init
 .debug_pubtypes
                   0x000090        0x3a1
  .debug_pubtypes
-                  0x000090         0x33 build/default/production/Can.o
+                  0x000090         0x33 build/default/debug/Can.o
  .debug_pubtypes
-                  0x0000c3         0x3e build/default/production/CanOpen.o
+                  0x0000c3         0x3e build/default/debug/CanOpen.o
  .debug_pubtypes
-                  0x000101        0x23a build/default/production/main.o
+                  0x000101        0x23a build/default/debug/main.o
  .debug_pubtypes
-                  0x00033b         0x24 build/default/production/Fat.o
+                  0x00033b         0x24 build/default/debug/Fat.o
  .debug_pubtypes
-                  0x00035f         0x84 build/default/production/Parameters.o
+                  0x00035f         0x84 build/default/debug/Parameters.o
  .debug_pubtypes
-                  0x0003e3         0x4e build/default/production/Majorization.o
+                  0x0003e3         0x4e build/default/debug/Majorization.o
 
 __c30_signature
                   0x000432         0xf6
  __c30_signature
-                  0x000432          0x6 build/default/production/Can.o
+                  0x000432          0x6 build/default/debug/Can.o
  __c30_signature
-                  0x000438          0x6 build/default/production/CanOpen.o
+                  0x000438          0x6 build/default/debug/CanOpen.o
  __c30_signature
-                  0x00043e          0x6 build/default/production/main.o
+                  0x00043e          0x6 build/default/debug/main.o
  __c30_signature
-                  0x000444          0x6 build/default/production/Fat.o
+                  0x000444          0x6 build/default/debug/Fat.o
  __c30_signature
-                  0x00044a          0x6 build/default/production/Parameters.o
+                  0x00044a          0x6 build/default/debug/Parameters.o
  __c30_signature
-                  0x000450          0x6 build/default/production/Majorization.o
+                  0x000450          0x6 build/default/debug/Majorization.o
  __c30_signature
                   0x000456          0x6 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib/dsPIC30F\libp30F6012A-elf.a(CAN1Initialize.o)
  __c30_signature
@@ -1934,57 +1972,57 @@ __c30_signature
  __c30_signature
                   0x000522          0x6 c:/program files/microchip/xc16/v1.21/bin/bin/../../lib\libc-elf.a(strlen.eo)
 
-.nbss               0x0800         0xce
- .nbss              0x0800         0xce build/default/production/CanOpen.o
-                    0x0800                  _canOpenCodtDomainBlock
-                    0x08c8                  _canOpenCodtDomainLength
-                    0x08ca                  _canOpenIndex
-                    0x08cc                  _canOpenSubIndex
+.nbss               0x0850         0xce
+ .nbss              0x0850         0xce build/default/debug/CanOpen.o
+                    0x0850                  _canOpenCodtDomainBlock
+                    0x0918                  _canOpenCodtDomainLength
+                    0x091a                  _canOpenIndex
+                    0x091c                  _canOpenSubIndex
 
-.ndata              0x08ce          0xc
- .ndata             0x08ce          0xc build/default/production/Majorization.o
-                    0x08ce                  _s
+.ndata              0x091e          0xc
+ .ndata             0x091e          0xc build/default/debug/Majorization.o
+                    0x091e                  _s
 
-.nbss               0x08da          0x8
- .nbss              0x08da          0x8 build/default/production/main.o
-                    0x08da                  __nodeId
-                    0x08dc                  __leadingController
-                    0x08de                  __accuracy
+.nbss               0x092a          0x8
+ .nbss              0x092a          0x8 build/default/debug/main.o
+                    0x092a                  __nodeId
+                    0x092c                  __leadingController
+                    0x092e                  __accuracy
 
-.ndata              0x08e2          0x4
- .ndata             0x08e2          0x2 build/default/production/CanOpen.o
-                    0x08e2                  _canOpenCodtDomainCurrentPosition
- .ndata             0x08e4          0x2 build/default/production/main.o
-                    0x08e4                  _maj_i
+.ndata              0x0932          0x4
+ .ndata             0x0932          0x2 build/default/debug/CanOpen.o
+                    0x0932                  _canOpenCodtDomainCurrentPosition
+ .ndata             0x0934          0x2 build/default/debug/main.o
+                    0x0934                  _maj_i
 
 .config_ICS       0xf8000c          0x2
- .config_ICS      0xf8000c          0x2 build/default/production/main.o
+ .config_ICS      0xf8000c          0x2 build/default/debug/main.o
 
 .config_GCP       0xf8000a          0x2
- .config_GCP      0xf8000a          0x2 build/default/production/main.o
+ .config_GCP      0xf8000a          0x2 build/default/debug/main.o
 
 .config_RSS       0xf80008          0x2
- .config_RSS      0xf80008          0x2 build/default/production/main.o
+ .config_RSS      0xf80008          0x2 build/default/debug/main.o
 
 .config_RBS       0xf80006          0x2
- .config_RBS      0xf80006          0x2 build/default/production/main.o
+ .config_RBS      0xf80006          0x2 build/default/debug/main.o
 
 .config_MCLRE     0xf80004          0x2
- .config_MCLRE    0xf80004          0x2 build/default/production/main.o
+ .config_MCLRE    0xf80004          0x2 build/default/debug/main.o
 
 .config_WDT       0xf80002          0x2
- .config_WDT      0xf80002          0x2 build/default/production/main.o
+ .config_WDT      0xf80002          0x2 build/default/debug/main.o
 
 .config_FCKSMEN
                   0xf80000          0x2
  .config_FCKSMEN
-                  0xf80000          0x2 build/default/production/main.o
+                  0xf80000          0x2 build/default/debug/main.o
 
 .const              0x8750         0x36 load address 0x000750  
- .const             0x8750         0x36 build/default/production/main.o
+ .const             0x8750         0x36 build/default/debug/main.o
 
 .text             0x000786       0x1964
- .text            0x000786        0x762 build/default/production/CanOpen.o
+ .text            0x000786        0x762 build/default/debug/CanOpen.o
                   0x000786                  _SendTPDO
                   0x0007ac                  _SendTSDO
                   0x0007ca                  _CanOpenSendCurrentObjectState
@@ -1998,7 +2036,7 @@ __c30_signature
                   0x000d80                  _CanOpenEditName
                   0x000ddc                  _CanOpenSendCodtDomainMsg
                   0x000e44                  _CanOpenGetCodtDomainMsg
- .text            0x000ee8        0x686 build/default/production/Parameters.o
+ .text            0x000ee8        0x686 build/default/debug/Parameters.o
                   0x000ee8                  _AddParameter
                   0x001098                  _DeleteParameter
                   0x00110c                  _ReadParameterValue
@@ -2008,7 +2046,7 @@ __c30_signature
                   0x0012f8                  _EditParameterName
                   0x001466                  _FindMaxIndex
                   0x0014ec                  _FindDescriptorAdrByIndex
- .text            0x00156e        0x520 build/default/production/main.o
+ .text            0x00156e        0x520 build/default/debug/main.o
                   0x00156e                  _ReadGlobalVars
                   0x001586                  _delay
                   0x0015ae                  _LongToString
@@ -2029,7 +2067,7 @@ __c30_signature
                   0x001a00                  __T1Interrupt
                   0x001a14                  __T4Interrupt
                   0x001a28                  __C1Interrupt
- .text            0x001a8e        0x372 build/default/production/Fat.o
+ .text            0x001a8e        0x372 build/default/debug/Fat.o
                   0x001a8e                  _WriteBootSector
                   0x001ab4                  _ReadBootSector
                   0x001ac4                  _Formatting
@@ -2044,13 +2082,13 @@ __c30_signature
                   0x001cde                  _DescriptorsDefragmentation
                   0x001d9c                  _WriteDataToCluster
                   0x001dce                  _ReadDataFromCluster
- .text            0x001e00        0x1d8 build/default/production/Majorization.o
+ .text            0x001e00        0x1d8 build/default/debug/Majorization.o
                   0x001e00                  _ParseTPDO1
                   0x001e8a                  _Majorization
                   0x001f9a                  _ChangeLeadingController
                   0x001fc4                  _TurnOnRelay
                   0x001fce                  _TurnOffRelay
- .text            0x001fd8        0x112 build/default/production/Can.o
+ .text            0x001fd8        0x112 build/default/debug/Can.o
                   0x001fd8                  _Can1Initialization
                   0x0020a6                  _Can1SendData
                   0x0020d8                  _Can1ReceiveData

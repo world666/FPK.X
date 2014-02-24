@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Can.c CanOpen.c main.c Fat.c Parameters.c
+SOURCEFILES_QUOTED_IF_SPACED=Can.c CanOpen.c main.c Fat.c Parameters.c Majorization.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/Can.o.d ${OBJECTDIR}/CanOpen.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Fat.o.d ${OBJECTDIR}/Parameters.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o ${OBJECTDIR}/Majorization.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/Can.o.d ${OBJECTDIR}/CanOpen.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Fat.o.d ${OBJECTDIR}/Parameters.o.d ${OBJECTDIR}/Majorization.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o
+OBJECTFILES=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o ${OBJECTDIR}/Majorization.o
 
 # Source Files
-SOURCEFILES=Can.c CanOpen.c main.c Fat.c Parameters.c
+SOURCEFILES=Can.c CanOpen.c main.c Fat.c Parameters.c Majorization.c
 
 
 CFLAGS=
@@ -114,6 +114,13 @@ ${OBJECTDIR}/Parameters.o: Parameters.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Parameters.c  -o ${OBJECTDIR}/Parameters.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Parameters.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Parameters.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/Majorization.o: Majorization.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/Majorization.o.d 
+	@${RM} ${OBJECTDIR}/Majorization.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Majorization.c  -o ${OBJECTDIR}/Majorization.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Majorization.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Majorization.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/Can.o: Can.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -149,6 +156,13 @@ ${OBJECTDIR}/Parameters.o: Parameters.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/Parameters.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  Parameters.c  -o ${OBJECTDIR}/Parameters.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Parameters.o.d"      -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/Parameters.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/Majorization.o: Majorization.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/Majorization.o.d 
+	@${RM} ${OBJECTDIR}/Majorization.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Majorization.c  -o ${OBJECTDIR}/Majorization.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/Majorization.o.d"      -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/Majorization.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

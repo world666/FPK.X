@@ -10,17 +10,15 @@
 #include <string.h>
 #include <xc.h>
 
-
-
-#include "Configuration.h"
+#include "globals.h"
 #include "MainLibrary.h"
 #include "Timer.h"
 #include "Spi.h"
 #include "FRAM.h"
 #include "Fat.h"
-#include "Parameters.h"
 #include "Can.h"
 #include "CanOpen.h"
+#include "WriteParameters.h"
 
 // FOSC
 #pragma config FOSFPR = XT_PLL16             // Oscillator (XT)
@@ -28,8 +26,8 @@
 
 // FWDT
 #pragma config FWPSB = WDTPSB_16        // WDT Prescaler B (1:16)
-#pragma config FWPSA = WDTPSA_512       // WDT Prescaler A (1:512)
-#pragma config WDT = WDT_OFF            // Watchdog Timer (Disabled)
+#pragma config FWPSA = WDTPSA_512      // WDT Prescaler A (1:512)
+#pragma config WDT = WDT_ON            // Watchdog Timer (Disabled)
 
 // FBORPOR
 #pragma config FPWRT = PWRT_64          // POR Timer Value (64ms)
@@ -56,28 +54,45 @@
 // FICD
 #pragma config ICS = ICS_PGD            // Comm Channel Select (Use PGC/EMUC and PGD/EMUD)
 
+unsigned int maj_i = 0;
 
+//clear WDT timer
+void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void);
+//
 void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void);
 // Can Receive Parameter
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void);
 
 int main(int argc, char** argv) {
     ADPCFG = 0xFFFF;//RA only digit
-
-    StartTimer4();
+    ClrWdt();
+    //StartTimer1();// start timer for WDT clearing
+    FramInitialization();
+    WriteAllParameters();
+    ReadGlobalVars();//read global vars from FRAM
+    //StartTimer4();
     Can1Initialization();
+    TurnOnRelay();
 
-    
-    while(1);
+    while(1)
+    {
+        ClrWdt();
+        delay(1000000);
+    }
     return (EXIT_SUCCESS);
+}
+void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void)
+{
+    // Clear Timer 1 interrupt flag
+    _T4IF = 0;
+    
 }
 void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
 {
     // Clear Timer 4 interrupt flag
     // Write to can bus
     _T4IF = 0;
-
-    CanOpenSendCurrentObjectState(50000,800000,5000,0);
+   // CanOpenSendCurrentObjectState(50000,800000,5000,0);
 }
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
     IFS1bits.C1IF = 0; //Clear CAN1 interrupt flag
@@ -88,7 +103,15 @@ void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
         C1INTFbits.WAKIF = 0;
         return;
     }
+    unsigned int sId = C1RX0SIDbits.SID;
     Can1ReceiveData(rxData);
-    CanOpenParseReceivedData(rxData); //parse message and send response
+    CanOpenParseRSDO(sId, rxData); //parse RSDO message and send response
+    ParseTPDO1(sId, rxData);//parse TPDO message
+    maj_i++;
+    if(maj_i == 18)
+    {
+         Majorization();
+         maj_i = 0;
+    }
     C1RX0CONbits.RXFUL = 0;
   }

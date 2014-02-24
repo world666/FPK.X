@@ -1,12 +1,14 @@
 #include "Can.h"
 #include "CanOpen.h"
-#include "Configuration.h"
 
 char canOpenCodtDomainBlock[200];
 unsigned int canOpenCodtDomainLength;
 unsigned int canOpenCodtDomainCurrentPosition = 0;
 unsigned int canOpenIndex;
-unsigned int canOpenSubIndex;
+unsigned int canOpenSubIndex;\
+
+//global vars
+extern int _nodeId;
 
 void SendTPDO(unsigned char pdoNumber, unsigned char nodeId, char* data, unsigned char bufNumber)
 {
@@ -24,7 +26,7 @@ void SendTSDO(unsigned char nodeId, char* data, unsigned char bufNumber)
 }
 void CanOpenSendCurrentObjectState(long s1, long s2, int v, int a)
 {
-    unsigned char nodeID = NODE_ID;
+    unsigned char nodeID = _nodeId;
     char data1[8] = {0, 0, 0 ,0, 0, 0, 0 ,0};
     char* buf = &s1;
     data1[0] = buf[0]; data1[1] = buf[1]; data1[2] = buf[2];
@@ -44,24 +46,32 @@ void CanOpenSendCurrentObjectState(long s1, long s2, int v, int a)
     char data3[8] = {0, 0, 0 ,0, 0, 0, 0 ,0};
     SendTPDO(3, nodeID, data3,2);
 }
-void CanOpenParseReceivedData(char *data)
+void CanOpenParseRSDO(unsigned int sid,char *data)
 {
+    if((sid&0x780)!=0x600)//if it's not rsdo
+        return;
     if(data[0] == 0x40)//read query
         SendDictionaryElement(data);
-    else if((data[0]&0xF3) == 0x22) //set query short msg
+    else if((data[0]&0xF0) == 0x20) //set query
         EditDictionaryElement(data);
-    else if((data[0]&0xF3) == 0x20) //set query codtdomain msg
-        EditCodtDomainElement(data);
     else if((data[0]&0xE0) == 0x00) //get codtDomainelement from pc
         CanOpenGetCodtDomainMsg(data);
-    else if(data[0] == 0x60 || data[0] == 0x70)//read query codt domain
+    else if(data[0] == 0x60 || data[0] == 0x70)//read query codt domain to pc
         CanOpenSendCodtDomainMsg();
 }
 void EditDictionaryElement(char* data)
 {
-    unsigned char nodeID = NODE_ID;
+    unsigned char nodeID = _nodeId;
     unsigned char objSubIndex = data[3];
     unsigned int objIndex = data[1] + (data[2]<<8);
+    if((data[0]&0xF3) == 0x20)//get codt domain
+    {
+        canOpenIndex = objIndex;
+        canOpenSubIndex = objSubIndex;
+        canOpenCodtDomainLength = data[4];
+        canOpenCodtDomainCurrentPosition = 0;
+        return;
+    }
         switch(objSubIndex)
         {
             case 2:
@@ -80,15 +90,8 @@ void EditDictionaryElement(char* data)
     sendBuf[3] = data[3];
     SendTSDO(nodeID, sendBuf,0);
 }
-void EditCodtDomainElement(char* data)
-{
-    canOpenIndex = data[1] + (data[2]<<8);
-    canOpenSubIndex = data[3];
-    canOpenCodtDomainLength = data[4];
-    canOpenCodtDomainCurrentPosition = 0;
-}
 void SendDictionaryElement(char* data)
-{   
+{
     unsigned char objSubIndex = data[3];
     unsigned int objIndex = data[1] + (data[2]<<8);
     if(objIndex == 0x2000)//send Device Information
@@ -112,7 +115,7 @@ void SendDictionaryElement(char* data)
 void SendDeviceInformation(char* data)
 {
     DeviceInformation deviceInformation;
-    unsigned char nodeID = NODE_ID;
+    unsigned char nodeID = _nodeId;
     char* valueArray;
     char sendBuf[8] = {0,0,0,0,0,0,0,0};
     unsigned int objIndex = data[1] + (data[2]<<8);
@@ -181,7 +184,7 @@ void SendDeviceInformation(char* data)
 }
 void SendValue(char* data)
 {
-    unsigned char nodeID = NODE_ID;
+    unsigned char nodeID = _nodeId;
     char sendBuf[8] = {0,0,0,0,0,0,0,0};
     char valueArray[150];
     unsigned int objIndex = data[1] + (data[2]<<8);
@@ -230,7 +233,7 @@ void SendValue(char* data)
 }
 void SendParameterType(char* data)
 {
-    unsigned char nodeID = NODE_ID;
+    unsigned char nodeID = _nodeId;
     char sendBuf[8];
     unsigned int objIndex = data[1] + (data[2]<<8);
     char objType = ReadParameterType(objIndex);
@@ -246,7 +249,7 @@ void SendParameterType(char* data)
 }
 void SendName(char* data)
 {
-    unsigned char nodeID = NODE_ID;
+    unsigned char nodeID = _nodeId;
     char sendBuf[8] = {0,0,0,0,0,0,0,0};
     char valueArray[30]; //max name is 29 symbols
     unsigned int objIndex = data[1] + (data[2]<<8);
@@ -289,7 +292,7 @@ void CanOpenEditName(char* data)
 }
 void CanOpenSendCodtDomainMsg()
 {
-    unsigned char nodeID = NODE_ID;
+    unsigned char nodeID = _nodeId;
     char sendBuf[8] = {0,0,0,0,0,0,0,0};
     if(canOpenCodtDomainCurrentPosition + 8> canOpenCodtDomainLength) // last block
     {
@@ -307,6 +310,7 @@ void CanOpenSendCodtDomainMsg()
 }
 void CanOpenGetCodtDomainMsg(char* data)
 {
+    unsigned int nodeID = _nodeId;
     int i=0;
     if(data[0]&0x01==1)//last block
     {
@@ -318,4 +322,12 @@ void CanOpenGetCodtDomainMsg(char* data)
     else
         for(i;i<7;i++)
             canOpenCodtDomainBlock[canOpenCodtDomainCurrentPosition++] = data[i+1];
+    //element was seted
+    char sendBuf[8];
+    char* pointer = &canOpenIndex;
+    sendBuf[0] = 0x60;
+    sendBuf[1] = pointer[0];
+    sendBuf[2] = pointer[1];
+    sendBuf[3] = canOpenSubIndex;
+    SendTSDO(nodeID, sendBuf,0);
 }
