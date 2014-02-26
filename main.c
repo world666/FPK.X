@@ -19,6 +19,7 @@
 #include "Can.h"
 #include "CanOpen.h"
 #include "WriteParameters.h"
+#include "PathComands.h"
 
 // FOSC
 #pragma config FOSFPR = XT_PLL16             // Oscillator (XT)
@@ -70,8 +71,8 @@ int main(int argc, char** argv) {
     FramInitialization();
     WriteAllParameters();
     ReadGlobalVars();//read global vars from FRAM
-    //StartTimer4();
     Can1Initialization();
+    StartTimer4();
     TurnOnRelay();
 
     while(1)
@@ -92,6 +93,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
     // Clear Timer 4 interrupt flag
     // Write to can bus
     _T4IF = 0;
+     TurnOnOrOffRelay(GetPathComandsDown());
    // CanOpenSendCurrentObjectState(50000,800000,5000,0);
 }
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){

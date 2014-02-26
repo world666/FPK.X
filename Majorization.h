@@ -8,4 +8,5 @@ void ParseTPDO1(unsigned int,unsigned  char*);
 void Majorization();
 void TurnOffRelay();
 void TurnOnRelay();
+long MajorizationGetCurrentS();
 

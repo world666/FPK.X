@@ -7,6 +7,7 @@ extern int _leadingController;
 extern long _accuracy;
 
 long s[3] = {100000,300000,500000}; // parameters S from 3 controllers
+long realS[3];
 
 void ParseTPDO1(unsigned int sid, unsigned char* data)
 {
@@ -23,14 +24,17 @@ void ParseTPDO1(unsigned int sid, unsigned char* data)
     if((sid&0x3) == 0x1)
     {
         s[0] = *distance;
+        realS[0] = *distance;
     }
     if((sid&0x3) == 0x2)
     {
         s[1] = *distance;
+        realS[1] = *distance;
     }
     if((sid&0x3) == 0x3)
     {
         s[2] = *distance;
+        realS[2] = *distance;
     }
 }
 
@@ -86,4 +90,9 @@ void TurnOffRelay()
 {
     TRISBbits.TRISB8 = 0;//set output on RB8
     LATBbits.LATB8 = 1;
+}
+
+long MajorizationGetCurrentS()
+{
+    return realS[_leadingController - 1];
 }
