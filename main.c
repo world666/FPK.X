@@ -93,7 +93,13 @@ void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
     // Clear Timer 4 interrupt flag
     // Write to can bus
     _T4IF = 0;
-     TurnOnOrOffRelay(GetPathComandsDown());
+     //TurnOnOrOffRelay(GetPathComandsDown());
+    char relayData[8] = {0,0,0,0,0,0,0,0};
+    relayData[0] = GetPathComandsUpDown();
+    unsigned int sId;
+    sId = 0x480;
+    sId += _nodeId;
+    Can1SendData(sId, relayData, 1);
    // CanOpenSendCurrentObjectState(50000,800000,5000,0);
 }
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){

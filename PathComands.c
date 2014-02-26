@@ -6,9 +6,9 @@
 extern long _sPointUp[8];
 extern long _sPointDown[8];
 
-unsigned char GetPathComandsDown()
+unsigned char GetPathComandsUpDown()
 {
-    int countPoints = 7;
+    int countPoints = 8;
     unsigned char relayData = 0;
     int i = 0;
     for(i; i < countPoints; i++)
@@ -20,8 +20,16 @@ unsigned char GetPathComandsDown()
             relayData |= buf;
         }
     }
-    if(relayData == 0)
-        return relayData;
+    i = 0;
+    for(i; i < countPoints; i++)
+    {
+        if(MajorizationGetCurrentS() >= _sPointUp[i])
+        {
+            unsigned char buf = 0b00000001;
+            buf <<= i;
+            relayData |= buf;
+        }
+    }
     return relayData;
 }
 
