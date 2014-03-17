@@ -11,7 +11,7 @@ unsigned char WriteAllParameters()
     char name[] = "inf";
     DeviceInformation deviceInformation;
     deviceInformation.ObjectCount = 7;
-    deviceInformation.ParametersCount = 13;
+    deviceInformation.ParametersCount = 14;
     deviceInformation.SystemName[0] = 0;
     strcat(deviceInformation.SystemName, "don_avto_1");
      deviceInformation.DeviceName[0] = 0;

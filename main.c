@@ -59,7 +59,9 @@ unsigned int maj_i = 0;
 
 //clear WDT timer
 void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void);
-//
+//write to can bus
+void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt(void);
+//write to can queue
 void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void);
 // Can Receive Parameter
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void);
@@ -72,6 +74,7 @@ int main(int argc, char** argv) {
     WriteAllParameters();
     ReadGlobalVars();//read global vars from FRAM
     Can1Initialization();
+    StartTimer2();
     StartTimer4();
     TurnOnRelay();
 
@@ -85,8 +88,14 @@ int main(int argc, char** argv) {
 void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void)
 {
     // Clear Timer 1 interrupt flag
-    _T4IF = 0;
+    _T1IF = 0;
     
+}
+void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt(void)
+{
+    // Clear Timer 2 interrupt flag
+    _T2IF = 0;
+    Can1Execute();
 }
 void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
 {

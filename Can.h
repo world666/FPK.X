@@ -31,3 +31,11 @@ void Can1SendData(unsigned int, char*, unsigned char);
  * @todo Read data(8 byte) over can interface
  */
 void Can1ReceiveData(char*);
+
+void Can1Execute();
+
+void IncTeilCan1(unsigned char);
+
+void IncHeadCan1(unsigned char);
+
+char IsQueueCan1Empty(unsigned char);

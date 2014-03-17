@@ -4,6 +4,23 @@
 //global vars
 extern int _nodeId;
 
+unsigned char queueSize = 10;
+unsigned char bufCount = 3;
+
+//can1
+unsigned char isTeilCan1OverCome[3] = {0,0,0};
+char can1DataBuf[3][10][8];
+int sidCan1Data[3][10];
+unsigned char headCan1[3] = {0,0,0};
+unsigned char teilCan1[3] = {0,0,0};
+
+//can2
+unsigned char isTeilCan2OverCome[3] = {0,0,0};
+char can2DataBuf[3][10][8];
+int sidCan2Data[3][10];
+unsigned char headCan2[3] = {0,0,0};
+unsigned char teilCan2[3] = {0,0,0};
+
 void Can1Initialization(void)
 {
 //Set request for configuration Mode
@@ -48,12 +65,64 @@ void Can1Initialization(void)
 
 void Can1SendData(unsigned int sid, char* data, unsigned char bufNumber)
 {
-    while(!CAN1IsTXReady(bufNumber));
-	//Load message ID, Data into transmit buffer and set transmit request bit
+    unsigned char teil = teilCan1[bufNumber];
+    IncTeilCan1(bufNumber);
+    sidCan1Data[bufNumber][teil] = sid;
+    int i = 0;
+    for(i;i<8;i++)
+        can1DataBuf[bufNumber][teil][i] = data[i];
+}
+
+void Can1Execute()
+{
+    int bufNumber = 0;
+    unsigned int sid;
+    char data[8];
+    char head;
+    for(bufNumber; bufNumber<bufCount; bufNumber++)
+    {
+        if(IsQueueCan1Empty(bufNumber))
+            continue;
+        while(!CAN1IsTXReady(bufNumber));
+        head = headCan1[bufNumber];
+        sid = sidCan1Data[bufNumber][head];
+        int j = 0;
+        for(j;j<8;j++)
+            data[j] = can1DataBuf[bufNumber][head][j];
+        //Load message ID, Data into transmit buffer and set transmit request bit
 	CAN1SendMessage((CAN_TX_SID(sid)) & (CAN_TX_EID_DIS) & (CAN_SUB_NOR_TX_REQ), (CAN_TX_EID(1)) & (CAN_NOR_TX_REQ), data, 8, bufNumber);
+        IncHeadCan1(bufNumber);
+    }
 }
 
 void Can1ReceiveData(char* data)
 {
     CAN1ReceiveMessage(data, 8, 0);
+}
+
+void IncTeilCan1(unsigned char bufNumber)
+{
+    teilCan1[bufNumber]++;
+    if(teilCan1[bufNumber]>=queueSize)
+    {
+        teilCan1[bufNumber] = 0;
+        isTeilCan1OverCome[bufNumber] = 1;
+    }
+}
+void IncHeadCan1(unsigned char bufNumber)
+{
+    headCan1[bufNumber]++;
+    if(headCan1[bufNumber]>=queueSize)
+    {
+        headCan1[bufNumber]=0;
+        isTeilCan1OverCome[bufNumber] = 0;
+    }
+}
+char IsQueueCan1Empty(unsigned char bufNumber)
+{
+    if(isTeilCan1OverCome[bufNumber] == 1)
+        return 0;
+    if(headCan1[bufNumber] < teilCan1[bufNumber])
+        return 0;
+    return 1;
 }
