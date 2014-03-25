@@ -55,6 +55,9 @@
 // FICD
 #pragma config ICS = ICS_PGD            // Comm Channel Select (Use PGC/EMUC and PGD/EMUD)
 
+//global vars
+extern int _nodeId;
+
 unsigned int maj_i = 0;
 
 //clear WDT timer
@@ -105,10 +108,11 @@ void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
      //TurnOnOrOffRelay(GetPathComandsDown());
     char relayData[8] = {0,0,0,0,0,0,0,0};
     relayData[0] = GetPathComandsUpDown();
+    relayData[1] = GetPathComandsUpDown();
     unsigned int sId;
     sId = 0x480;
     sId += _nodeId;
-    Can1SendData(sId, relayData, 1);
+    Can1SendData(sId, relayData, 2);
    // CanOpenSendCurrentObjectState(50000,800000,5000,0);
 }
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
@@ -122,7 +126,8 @@ void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
     }
     unsigned int sId = C1RX0SIDbits.SID;
     Can1ReceiveData(rxData);
-    CanOpenParseRSDO(sId, rxData); //parse RSDO message and send response
+    if(sId == 0x600 + _nodeId)
+        CanOpenParseRSDO(sId, rxData); //parse RSDO message and send response
     ParseTPDO1(sId, rxData);//parse TPDO message
     maj_i++;
     if(maj_i == 18)
