@@ -66,8 +66,10 @@ void __attribute__((__interrupt__, __auto_psv__)) _T1Interrupt(void);
 void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt(void);
 //write to can queue
 void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void);
-// Can Receive Parameter
+// Can1 Receive Parameter
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void);
+// Can2 Receive Parameter
+void __attribute__ ((__interrupt__, __auto_psv__)) _C2Interrupt (void);
 
 int main(int argc, char** argv) {
     ADPCFG = 0xFFFF;//RA only digit
@@ -75,8 +77,9 @@ int main(int argc, char** argv) {
     //StartTimer1();// start timer for WDT clearing
     FramInitialization();
     WriteAllParameters();
-    ReadGlobalVars();//read global vars from FRAM
+    ReadConfig();//read global vars from FRAM
     Can1Initialization();
+    Can2Initialization();
     StartTimer2();
     StartTimer4();
     TurnOnRelay();
@@ -99,6 +102,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T2Interrupt(void)
     // Clear Timer 2 interrupt flag
     _T2IF = 0;
     Can1Execute();
+    Can2Execute();
 }
 void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
 {
@@ -118,6 +122,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
 void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
     IFS1bits.C1IF = 0; //Clear CAN1 interrupt flag
     C1INTFbits.RX0IF = 0; //Clear CAN1 RX interrupt flag
+    C1INTFbits.RX1IF = 0; //Clear CAN1 RX interrupt flag
     char rxData[8];
     if(C1CTRLbits.ICODE == 7) //check filters
     {
@@ -127,7 +132,7 @@ void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
     unsigned int sId = C1RX0SIDbits.SID;
     Can1ReceiveData(rxData);
     if(sId == 0x600 + _nodeId)
-        CanOpenParseRSDO(sId, rxData); //parse RSDO message and send response
+        CanOpenParseRSDO(sId, rxData, 1); //parse RSDO message and send response
     ParseTPDO1(sId, rxData);//parse TPDO message
     maj_i++;
     if(maj_i == 18)
@@ -136,4 +141,22 @@ void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
          maj_i = 0;
     }
     C1RX0CONbits.RXFUL = 0;
+    C1RX1CONbits.RXFUL = 0;
+  }
+void __attribute__ ((__interrupt__, __auto_psv__)) _C2Interrupt (void){
+    IFS2bits.C2IF = 0; //Clear CAN2 interrupt flag
+    C2INTFbits.RX0IF = 0; //Clear CAN2 RX interrupt flag
+    C2INTFbits.RX1IF = 0; //Clear CAN2 RX interrupt flag
+    char rxData[8];
+    if(C2CTRLbits.ICODE == 7) //check filters
+    {
+        C2INTFbits.WAKIF = 0;
+        return;
+    }
+    unsigned int sId = C2RX0SIDbits.SID;
+    Can2ReceiveData(rxData);
+    if(sId == 0x600 + _nodeId)
+        CanOpenParseRSDO(sId, rxData, 2); //parse RSDO message and send response
+    C2RX0CONbits.RXFUL = 0;
+    C2RX1CONbits.RXFUL = 0;
   }

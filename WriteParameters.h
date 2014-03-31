@@ -23,7 +23,7 @@ unsigned char WriteAllParameters()
     deviceInformation.CanVersion[0] = 0;
     strcat(deviceInformation.CanVersion,"can1");
 
-    if(!AddParameter(name,0xF,&deviceInformation,28))
+    if(!AddParameter(name,0xF,&deviceInformation,32))
         return 0;
     
     //node id

@@ -15,6 +15,11 @@
  * @todo init can 1
  */
 void Can1Initialization(void);
+/**
+ * @author Kyrylov Andrii
+ * @todo init can 2
+ */
+void Can2Initialization(void);
 
 /**
  * @autor Kyrylov Andrii
@@ -24,6 +29,14 @@ void Can1Initialization(void);
  * @todo Send data(8 byte) over can interface
  */
 void Can1SendData(unsigned int, char*, unsigned char);
+/**
+ * @autor Kyrylov Andrii
+ * @param unsigned int - message id
+ * @param char* - data
+ * @param unsigned char buf number
+ * @todo Send data(8 byte) over can interface
+ */
+void Can2SendData(unsigned int, char*, unsigned char);
 
 /**
  * @autor Kyrylov Andrii
@@ -31,11 +44,25 @@ void Can1SendData(unsigned int, char*, unsigned char);
  * @todo Read data(8 byte) over can interface
  */
 void Can1ReceiveData(char*);
+/**
+ * @autor Kyrylov Andrii
+ * @param char* - output buffer
+ * @todo Read data(8 byte) over can interface
+ */
+void Can2ReceiveData(char*);
 
 void Can1Execute();
+
+void Can2Execute();
 
 void IncTeilCan1(unsigned char);
 
 void IncHeadCan1(unsigned char);
 
 char IsQueueCan1Empty(unsigned char);
+
+void IncTeilCan2(unsigned char);
+
+void IncHeadCan2(unsigned char);
+
+char IsQueueCan2Empty(unsigned char);
