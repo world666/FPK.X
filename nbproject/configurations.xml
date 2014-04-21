@@ -16,6 +16,7 @@
       <itemPath>Majorization.h</itemPath>
       <itemPath>globals.h</itemPath>
       <itemPath>PathComands.h</itemPath>
+      <itemPath>InOutSignals.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -31,6 +32,7 @@
       <itemPath>Parameters.c</itemPath>
       <itemPath>Majorization.c</itemPath>
       <itemPath>PathComands.c</itemPath>
+      <itemPath>InOutSignals.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

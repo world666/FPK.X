@@ -27,7 +27,7 @@ unsigned char WriteAllParameters()
         return 0;
     
     //node id
-    long data = 4;
+    long data = 5;
     char name1[] = "node_id";
     AddParameter(name1, 0x10, &data, 4);
     //leading controller

@@ -1,6 +1,7 @@
 #include <xc.h>
 #include <math.h>
 #include "Majorization.h"
+#include "InOutSignals.h"
 
 //global vars
 extern int _leadingController;
@@ -83,13 +84,11 @@ void ChangeLeadingController(unsigned int FailedControllerNum)
 
 void TurnOnRelay()
 {
-    TRISBbits.TRISB8 = 0;//set output on RB8
-    LATBbits.LATB8 = 0;
+    WriteOutSignals(0b00000001, 0b00000001);
 }
 void TurnOffRelay()
 {
-    TRISBbits.TRISB8 = 0;//set output on RB8
-    LATBbits.LATB8 = 1;
+    WriteOutSignals(0b00000001, 0b00000000);
 }
 
 long MajorizationGetCurrentS()

@@ -9,4 +9,5 @@ Fat.h  \
 Can.h  \
 CanOpen.h  \
 WriteParameters.h  \
-PathComands.h 
+PathComands.h  \
+ InOutSignals.h 

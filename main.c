@@ -20,6 +20,7 @@
 #include "CanOpen.h"
 #include "WriteParameters.h"
 #include "PathComands.h"
+#include "InOutSignals.h"
 
 // FOSC
 #pragma config FOSFPR = XT_PLL16             // Oscillator (XT)
@@ -111,8 +112,10 @@ void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
     _T4IF = 0;
      //TurnOnOrOffRelay(GetPathComandsDown());
     char relayData[8] = {0,0,0,0,0,0,0,0};
-    relayData[0] = GetPathComandsUpDown();
-    relayData[1] = GetPathComandsUpDown();
+    relayData[0] = ~ReadInSignals();
+    relayData[1] = ~ReadOutSignals();
+    relayData[2] = GetPathComandsUpDown();
+    relayData[3] = GetPathComandsUpDown();
     unsigned int sId;
     sId = 0x480;
     sId += _nodeId;
