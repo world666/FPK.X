@@ -38,7 +38,7 @@ void StartTimer4()// write to can queue
     // Period = PR3 * prescaler * Tcy = 58594 * 256 * 33.33ns = 500ms
     T4CON = 0;            // Clear Timer 4 configuration
     T4CONbits.TCKPS = 3;  // Set timer 4 prescaler (0=1:1, 1=1:8, 2=1:64, 3=1:256)
-    PR4 = 1250;          // Set Timer 4 period (max value is 65535)
+    PR4 = 4684;          // Set Timer 4 period (max value is 65535)
     _T4IP = 0x4;            // Set Timer 4 interrupt priority
     _T4IF = 0;            // Clear Timer 4 interrupt flag
     _T4IE = 1;            // Enable Timer 4 interrupt
