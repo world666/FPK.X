@@ -21,6 +21,7 @@
 #include "WriteParameters.h"
 #include "PathComands.h"
 #include "InOutSignals.h"
+#include "ADC.h"
 
 // FOSC
 #pragma config FOSFPR = XT_PLL16             // Oscillator (XT)
@@ -73,9 +74,9 @@ void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void);
 void __attribute__ ((__interrupt__, __auto_psv__)) _C2Interrupt (void);
 
 int main(int argc, char** argv) {
-    ADPCFG = 0xFFFF;//RA only digit
     ClrWdt();
     //StartTimer1();// start timer for WDT clearing
+    InitADC();
     FramInitialization();
     WriteAllParameters();
     ReadConfig();//read global vars from FRAM
@@ -116,6 +117,10 @@ void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
     relayData[1] = ~ReadOutSignals();
     relayData[2] = GetPathComandsUpDown();
     relayData[3] = GetPathComandsUpDown();
+    relayData[4] = GetAnalogSignal(0);
+    relayData[5] = GetAnalogSignal(1);
+    relayData[6] = GetAnalogSignal(2);
+    relayData[7] = GetAnalogSignal(3);
     unsigned int sId;
     sId = 0x480;
     sId += _nodeId;

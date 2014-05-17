@@ -10,4 +10,5 @@ Can.h  \
 CanOpen.h  \
 WriteParameters.h  \
 PathComands.h  \
- InOutSignals.h 
+ InOutSignals.h  \
+ADC.h 

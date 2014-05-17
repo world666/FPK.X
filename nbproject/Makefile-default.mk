@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Can.c CanOpen.c main.c Fat.c Parameters.c Majorization.c PathComands.c InOutSignals.c
+SOURCEFILES_QUOTED_IF_SPACED=Can.c CanOpen.c main.c Fat.c Parameters.c Majorization.c PathComands.c InOutSignals.c ADC.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o ${OBJECTDIR}/Majorization.o ${OBJECTDIR}/PathComands.o ${OBJECTDIR}/InOutSignals.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/Can.o.d ${OBJECTDIR}/CanOpen.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Fat.o.d ${OBJECTDIR}/Parameters.o.d ${OBJECTDIR}/Majorization.o.d ${OBJECTDIR}/PathComands.o.d ${OBJECTDIR}/InOutSignals.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o ${OBJECTDIR}/Majorization.o ${OBJECTDIR}/PathComands.o ${OBJECTDIR}/InOutSignals.o ${OBJECTDIR}/ADC.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/Can.o.d ${OBJECTDIR}/CanOpen.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/Fat.o.d ${OBJECTDIR}/Parameters.o.d ${OBJECTDIR}/Majorization.o.d ${OBJECTDIR}/PathComands.o.d ${OBJECTDIR}/InOutSignals.o.d ${OBJECTDIR}/ADC.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o ${OBJECTDIR}/Majorization.o ${OBJECTDIR}/PathComands.o ${OBJECTDIR}/InOutSignals.o
+OBJECTFILES=${OBJECTDIR}/Can.o ${OBJECTDIR}/CanOpen.o ${OBJECTDIR}/main.o ${OBJECTDIR}/Fat.o ${OBJECTDIR}/Parameters.o ${OBJECTDIR}/Majorization.o ${OBJECTDIR}/PathComands.o ${OBJECTDIR}/InOutSignals.o ${OBJECTDIR}/ADC.o
 
 # Source Files
-SOURCEFILES=Can.c CanOpen.c main.c Fat.c Parameters.c Majorization.c PathComands.c InOutSignals.c
+SOURCEFILES=Can.c CanOpen.c main.c Fat.c Parameters.c Majorization.c PathComands.c InOutSignals.c ADC.c
 
 
 CFLAGS=
@@ -135,6 +135,13 @@ ${OBJECTDIR}/InOutSignals.o: InOutSignals.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  InOutSignals.c  -o ${OBJECTDIR}/InOutSignals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/InOutSignals.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/InOutSignals.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/ADC.o: ADC.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/ADC.o.d 
+	@${RM} ${OBJECTDIR}/ADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ADC.c  -o ${OBJECTDIR}/ADC.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADC.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1  -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/ADC.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/Can.o: Can.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -191,6 +198,13 @@ ${OBJECTDIR}/InOutSignals.o: InOutSignals.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/InOutSignals.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  InOutSignals.c  -o ${OBJECTDIR}/InOutSignals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/InOutSignals.o.d"      -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/InOutSignals.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/ADC.o: ADC.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/ADC.o.d 
+	@${RM} ${OBJECTDIR}/ADC.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ADC.c  -o ${OBJECTDIR}/ADC.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/ADC.o.d"      -g -omf=elf -O0 -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/ADC.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 
