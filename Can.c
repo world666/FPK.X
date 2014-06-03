@@ -46,7 +46,7 @@ void Can1Initialization(void)
 //Set Filters
     long node_id = _nodeId;
     CAN1SetFilter(0, CAN_FILTER_SID(0x180) & CAN_RX_EID_DIS, CAN_FILTER_EID(00000));
-    CAN1SetMask(0, CAN_MASK_SID(0x7FC) & CAN_MATCH_FILTER_TYPE, CAN_MASK_EID(00000));
+    CAN1SetMask(0, CAN_MASK_SID(0x1FC) & CAN_MATCH_FILTER_TYPE, CAN_MASK_EID(00000));
     CAN1SetFilter(1, CAN_FILTER_SID(0x600+node_id) & CAN_RX_EID_DIS, CAN_FILTER_EID(00000));
     CAN1SetMask(1, CAN_MASK_SID(0x7FF) & CAN_MATCH_FILTER_TYPE, CAN_MASK_EID(00000));
 //Set transmitter and receiver mode

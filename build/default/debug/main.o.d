@@ -11,4 +11,5 @@ CanOpen.h  \
 WriteParameters.h  \
 PathComands.h  \
  InOutSignals.h  \
-ADC.h 
+ADC.h  \
+MotionControl.h 

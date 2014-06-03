@@ -22,6 +22,7 @@
 #include "PathComands.h"
 #include "InOutSignals.h"
 #include "ADC.h"
+#include "MotionControl.h"
 
 // FOSC
 #pragma config FOSFPR = XT_PLL16             // Oscillator (XT)
@@ -125,6 +126,7 @@ void __attribute__((__interrupt__, __auto_psv__)) _T4Interrupt(void)
     sId = 0x480;
     sId += _nodeId;
     Can1SendData(sId, relayData, 2);
+    MakeControl(relayData[0], relayData[1]);
     //Can2SendData(sId, relayData, 1);
    // CanOpenSendCurrentObjectState(50000,800000,5000,0);
 }
@@ -142,7 +144,8 @@ void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
     Can1ReceiveData(rxData);
     if(sId == 0x600 + _nodeId)
         CanOpenParseRSDO(sId, rxData, 1); //parse RSDO message and send response
-    ParseTPDO1(sId, rxData);//parse TPDO message
+    ParseTPDO1(sId, rxData);//parse TPDO1 message
+    ParseTPDO3(sId, rxData);//parse TPDO3 message
     maj_i++;
     if(maj_i == 18)
     {
