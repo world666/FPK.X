@@ -155,11 +155,11 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x80c           0xc12  (3090)
 .const                       0x90c                0x66            0x99  (153)
-.text                        0x972              0x2660          0x3990  (14736)
-.dinit                      0x2fd2                0x60            0x90  (144)
-.text                       0x3032                0x5a            0x87  (135)
+.text                        0x972              0x26fe          0x3a7d  (14973)
+.dinit                      0x3070                0x66            0x99  (153)
+.text                       0x30d6                0xbc           0x11a  (282)
 
-                     Total program memory used (bytes):         0x4752  (18258) 12%
+                     Total program memory used (bytes):         0x48db  (18651) 12%
 
 
 Data Memory  [Origin = 0x800, Length = 0x2000]
@@ -168,10 +168,10 @@ section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                        0x800                   0           0x398  (920)
 .ndata                       0xb98                   0            0x20  (32)
-.nbss                        0xbb8                   0             0xc  (12)
-.ndata                       0xbc4                   0             0xc  (12)
+.nbss                        0xbb8                   0            0x18  (24)
+.ndata                       0xbd0                   0             0xc  (12)
 
-                        Total data memory used (bytes):          0x3d0  (976) 11%
+                        Total data memory used (bytes):          0x3dc  (988) 12%
 
 
 Dynamic Memory Usage
@@ -179,9 +179,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0xbd0                              0x1c30  (7216)
+stack                        0xbdc                              0x1c24  (7204)
 
-                        Maximum dynamic memory (bytes):         0x1c30  (7216)
+                        Maximum dynamic memory (bytes):         0x1c24  (7204)
 
 
 External Symbols in Data Memory (by address):
@@ -213,19 +213,23 @@ External Symbols in Data Memory (by address):
                     0x0ba9                  _teilCan2
                     0x0bac                  _s
                     0x0bb8                  _realS
-                    0x0bc4                  _canOpenCodtDomainCurrentPosition
-                    0x0bc6                  _parameterPackageWasSent
-                    0x0bc8                  _VSL
-                    0x0bc9                  _VSP
-                    0x0bca                  _regim1
-                    0x0bcb                  _regim2
-                    0x0bcc                  _maj_i
-                    0x0bce                  _outputBuffer
+                    0x0bc4                  _vsl
+                    0x0bc7                  _vsp
+                    0x0bca                  _reg1
+                    0x0bcd                  _reg2
+                    0x0bd0                  _canOpenCodtDomainCurrentPosition
+                    0x0bd2                  _parameterPackageWasSent
+                    0x0bd4                  _VSL
+                    0x0bd5                  _VSP
+                    0x0bd6                  _regim1
+                    0x0bd7                  _regim2
+                    0x0bd8                  _maj_i
+                    0x0bda                  _outputBuffer
 
 External Symbols in Data Memory (by name):
 
-                    0x0bc8                  _VSL
-                    0x0bc9                  _VSP
+                    0x0bd4                  _VSL
+                    0x0bd5                  _VSP
                     0x0b2c                  __accuracy
                     0x0b26                  __canNumber
                     0x0b30                  __highEdge
@@ -239,7 +243,7 @@ External Symbols in Data Memory (by name):
                     0x0800                  _can1DataBuf
                     0x092c                  _can2DataBuf
                     0x0a58                  _canOpenCodtDomainBlock
-                    0x0bc4                  _canOpenCodtDomainCurrentPosition
+                    0x0bd0                  _canOpenCodtDomainCurrentPosition
                     0x0b20                  _canOpenCodtDomainLength
                     0x0b22                  _canOpenIndex
                     0x0b24                  _canOpenSubIndex
@@ -247,18 +251,22 @@ External Symbols in Data Memory (by name):
                     0x0ba6                  _headCan2
                     0x0b9a                  _isTeilCan1OverCome
                     0x0ba3                  _isTeilCan2OverCome
-                    0x0bcc                  _maj_i
-                    0x0bce                  _outputBuffer
-                    0x0bc6                  _parameterPackageWasSent
+                    0x0bd8                  _maj_i
+                    0x0bda                  _outputBuffer
+                    0x0bd2                  _parameterPackageWasSent
                     0x0b98                  _queueSize
                     0x0bb8                  _realS
-                    0x0bca                  _regim1
-                    0x0bcb                  _regim2
+                    0x0bca                  _reg1
+                    0x0bcd                  _reg2
+                    0x0bd6                  _regim1
+                    0x0bd7                  _regim2
                     0x0bac                  _s
                     0x08f0                  _sidCan1Data
                     0x0a1c                  _sidCan2Data
                     0x0ba0                  _teilCan1
                     0x0ba9                  _teilCan2
+                    0x0bc4                  _vsl
+                    0x0bc7                  _vsp
 
 External Symbols in Program Memory (by address):
 
@@ -390,20 +398,20 @@ External Symbols in Program Memory (by address):
                   0x002a42                  _DescriptorsDefragmentation
                   0x002b00                  _WriteDataToCluster
                   0x002b32                  _ReadDataFromCluster
-                  0x002b64                  _ParseTPDO1
-                  0x002c06                  _Majorization
-                  0x002d16                  _ChangeLeadingController
-                  0x002d40                  _TurnOnRelay
-                  0x002d4c                  _TurnOffRelay
-                  0x002d58                  _MajorizationGetCurrentS
-                  0x002d6c                  _MakeControl
-                  0x002eaa                  _ParseTPDO3
-                  0x002eea                  _GetPathComandsUpDown
-                  0x002f70                  _InitADC
-                  0x002f92                  _GetAnalogSignal
-                  0x003032                  _ReadInSignals
-                  0x003044                  _WriteOutSignals
-                  0x003080                  _ReadOutSignals
+                  0x002b64                  _MakeControl
+                  0x002c8a                  _ParseTPDO3
+                  0x002de2                  _ParseTPDO1
+                  0x002e84                  _Majorization
+                  0x002f94                  _ChangeLeadingController
+                  0x002fbe                  _TurnOnRelay
+                  0x002fca                  _TurnOffRelay
+                  0x002fd6                  _MajorizationGetCurrentS
+                  0x002fea                  _GetPathComandsUpDown
+                  0x0030d6                  _InitADC
+                  0x0030f8                  _GetAnalogSignal
+                  0x003138                  _ReadInSignals
+                  0x00314a                  _WriteOutSignals
+                  0x003186                  _ReadOutSignals
 
 External Symbols in Program Memory (by name):
 
@@ -440,7 +448,7 @@ External Symbols in Program Memory (by name):
                   0x00152a                  _CanOpenParseRSDO
                   0x001acc                  _CanOpenSendCodtDomainMsg
                   0x00143e                  _CanOpenSendCurrentObjectState
-                  0x002d16                  _ChangeLeadingController
+                  0x002f94                  _ChangeLeadingController
                   0x00296a                  _ClearClustersSequence
                   0x0004a4                  _ConfigIntCAN1
                   0x0004cc                  _ConfigIntCAN2
@@ -461,30 +469,30 @@ External Symbols in Program Memory (by name):
                   0x000f02                  _FramReadStatus
                   0x000e6e                  _FramWrite
                   0x000e5c                  _FramWriteEnable
-                  0x002f92                  _GetAnalogSignal
-                  0x002eea                  _GetPathComandsUpDown
+                  0x0030f8                  _GetAnalogSignal
+                  0x002fea                  _GetPathComandsUpDown
                   0x0026b2                  _IncHeadCan1
                   0x002774                  _IncHeadCan2
                   0x00266e                  _IncTeilCan1
                   0x002730                  _IncTeilCan2
-                  0x002f70                  _InitADC
+                  0x0030d6                  _InitADC
                   0x0026f6                  _IsQueueCan1Empty
                   0x0027b8                  _IsQueueCan2Empty
                   0x000d0e                  _LongToCharArray
                   0x000c56                  _LongToString
-                  0x002c06                  _Majorization
-                  0x002d58                  _MajorizationGetCurrentS
-                  0x002d6c                  _MakeControl
+                  0x002e84                  _Majorization
+                  0x002fd6                  _MajorizationGetCurrentS
+                  0x002b64                  _MakeControl
                   0x0004f4                  _OpenSPI2
-                  0x002b64                  _ParseTPDO1
-                  0x002eaa                  _ParseTPDO3
+                  0x002de2                  _ParseTPDO1
+                  0x002c8a                  _ParseTPDO3
                   0x002818                  _ReadBootSector
                   0x000972                  _ReadConfig
                   0x002b32                  _ReadDataFromCluster
                   0x002a28                  _ReadDescriptorByAddress
-                  0x003032                  _ReadInSignals
+                  0x003138                  _ReadInSignals
                   0x002886                  _ReadNextFat
-                  0x003080                  _ReadOutSignals
+                  0x003186                  _ReadOutSignals
                   0x001e7c                  _ReadParameterName
                   0x001f30                  _ReadParameterType
                   0x001e10                  _ReadParameterValue
@@ -498,14 +506,14 @@ External Symbols in Program Memory (by name):
                   0x000d44                  _StartTimer1
                   0x000d6a                  _StartTimer2
                   0x000d90                  _StartTimer4
-                  0x002d4c                  _TurnOffRelay
-                  0x002d40                  _TurnOnRelay
+                  0x002fca                  _TurnOffRelay
+                  0x002fbe                  _TurnOnRelay
                   0x0009fc                  _UpdateConfig
                   0x000f36                  _WriteAllParameters
                   0x0027f2                  _WriteBootSector
                   0x002b00                  _WriteDataToCluster
                   0x002a0e                  _WriteDescriptorByAddress
-                  0x003044                  _WriteOutSignals
+                  0x00314a                  _WriteOutSignals
                   0x0028ac                  _WriteToFat
                   0x0012fc                  __C1Interrupt
                   0x00137a                  __C2Interrupt
@@ -785,7 +793,7 @@ userdata
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x62b6
+.debug_info       0x000000       0x6346
  *(.debug_info)
  .debug_info      0x000000        0xa26 build/default/production/Can.o
  .debug_info      0x000a26        0xb0e build/default/production/CanOpen.o
@@ -796,10 +804,10 @@ userdata
  .debug_info      0x00593b        0x184 build/default/production/PathComands.o
  .debug_info      0x005abf        0x1e4 build/default/production/InOutSignals.o
  .debug_info      0x005ca3        0x376 build/default/production/ADC.o
- .debug_info      0x006019        0x29d build/default/production/MotionControl.o
+ .debug_info      0x006019        0x32d build/default/production/MotionControl.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0xc72
+.debug_abbrev     0x000000        0xc84
  *(.debug_abbrev)
  .debug_abbrev    0x000000        0x16a build/default/production/Can.o
  .debug_abbrev    0x00016a        0x1dd build/default/production/CanOpen.o
@@ -810,9 +818,9 @@ userdata
  .debug_abbrev    0x0009bd         0x7c build/default/production/PathComands.o
  .debug_abbrev    0x000a39         0xa3 build/default/production/InOutSignals.o
  .debug_abbrev    0x000adc         0xed build/default/production/ADC.o
- .debug_abbrev    0x000bc9         0xa9 build/default/production/MotionControl.o
+ .debug_abbrev    0x000bc9         0xbb build/default/production/MotionControl.o
 
-.debug_line       0x000000       0x2d71
+.debug_line       0x000000       0x2dd3
  *(.debug_line)
  .debug_line      0x000000        0x52f build/default/production/Can.o
  .debug_line      0x00052f        0x933 build/default/production/CanOpen.o
@@ -823,7 +831,7 @@ userdata
  .debug_line      0x0028ce         0xd7 build/default/production/PathComands.o
  .debug_line      0x0029a5        0x122 build/default/production/InOutSignals.o
  .debug_line      0x002ac7        0x13f build/default/production/ADC.o
- .debug_line      0x002c06        0x16b build/default/production/MotionControl.o
+ .debug_line      0x002c06        0x1cd build/default/production/MotionControl.o
 
 .debug_frame      0x000000        0x648
  *(.debug_frame)
@@ -858,7 +866,7 @@ userdata
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x9ae
+                  0x000000        0x9d0
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000        0x1d1 build/default/production/Can.o
@@ -879,7 +887,7 @@ userdata
  .debug_pubnames
                   0x000925         0x32 build/default/production/ADC.o
  .debug_pubnames
-                  0x000957         0x57 build/default/production/MotionControl.o
+                  0x000957         0x79 build/default/production/MotionControl.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -2214,23 +2222,28 @@ __c30_signature
  .ndata             0x0bac          0xc build/default/production/Majorization.o
                     0x0bac                  _s
 
-.nbss               0x0bb8          0xc
+.nbss               0x0bb8         0x18
  .nbss              0x0bb8          0xc build/default/production/Majorization.o
                     0x0bb8                  _realS
+ .nbss              0x0bc4          0xc build/default/production/MotionControl.o
+                    0x0bc4                  _vsl
+                    0x0bc7                  _vsp
+                    0x0bca                  _reg1
+                    0x0bcd                  _reg2
 
-.ndata              0x0bc4          0xc
- .ndata             0x0bc4          0x4 build/default/production/CanOpen.o
-                    0x0bc4                  _canOpenCodtDomainCurrentPosition
-                    0x0bc6                  _parameterPackageWasSent
- .ndata             0x0bc8          0x4 build/default/production/MotionControl.o
-                    0x0bc8                  _VSL
-                    0x0bc9                  _VSP
-                    0x0bca                  _regim1
-                    0x0bcb                  _regim2
- .ndata             0x0bcc          0x2 build/default/production/main.o
-                    0x0bcc                  _maj_i
- .ndata             0x0bce          0x2 build/default/production/InOutSignals.o
-                    0x0bce                  _outputBuffer
+.ndata              0x0bd0          0xc
+ .ndata             0x0bd0          0x4 build/default/production/CanOpen.o
+                    0x0bd0                  _canOpenCodtDomainCurrentPosition
+                    0x0bd2                  _parameterPackageWasSent
+ .ndata             0x0bd4          0x4 build/default/production/MotionControl.o
+                    0x0bd4                  _VSL
+                    0x0bd5                  _VSP
+                    0x0bd6                  _regim1
+                    0x0bd7                  _regim2
+ .ndata             0x0bd8          0x2 build/default/production/main.o
+                    0x0bd8                  _maj_i
+ .ndata             0x0bda          0x2 build/default/production/InOutSignals.o
+                    0x0bda                  _outputBuffer
 
 .config_ICS       0xf8000c          0x2
  .config_ICS      0xf8000c          0x2 build/default/production/main.o
@@ -2258,7 +2271,7 @@ __c30_signature
 .const              0x890c         0x66 load address 0x00090c  
  .const             0x890c         0x66 build/default/production/main.o
 
-.text             0x000972       0x2660
+.text             0x000972       0x26fe
  .text            0x000972        0xa64 build/default/production/main.o
                   0x000972                  _ReadConfig
                   0x0009fc                  _UpdateConfig
@@ -2338,27 +2351,27 @@ __c30_signature
                   0x002a42                  _DescriptorsDefragmentation
                   0x002b00                  _WriteDataToCluster
                   0x002b32                  _ReadDataFromCluster
- .text            0x002b64        0x208 build/default/production/Majorization.o
-                  0x002b64                  _ParseTPDO1
-                  0x002c06                  _Majorization
-                  0x002d16                  _ChangeLeadingController
-                  0x002d40                  _TurnOnRelay
-                  0x002d4c                  _TurnOffRelay
-                  0x002d58                  _MajorizationGetCurrentS
- .text            0x002d6c        0x17e build/default/production/MotionControl.o
-                  0x002d6c                  _MakeControl
-                  0x002eaa                  _ParseTPDO3
- .text            0x002eea         0x86 build/default/production/PathComands.o
-                  0x002eea                  _GetPathComandsUpDown
- .text            0x002f70         0x62 build/default/production/ADC.o
-                  0x002f70                  _InitADC
-                  0x002f92                  _GetAnalogSignal
+ .text            0x002b64        0x27e build/default/production/MotionControl.o
+                  0x002b64                  _MakeControl
+                  0x002c8a                  _ParseTPDO3
+ .text            0x002de2        0x208 build/default/production/Majorization.o
+                  0x002de2                  _ParseTPDO1
+                  0x002e84                  _Majorization
+                  0x002f94                  _ChangeLeadingController
+                  0x002fbe                  _TurnOnRelay
+                  0x002fca                  _TurnOffRelay
+                  0x002fd6                  _MajorizationGetCurrentS
+ .text            0x002fea         0x86 build/default/production/PathComands.o
+                  0x002fea                  _GetPathComandsUpDown
 
-.dinit            0x002fd2         0x60
- .dinit           0x002fd2         0x60 data_init
+.dinit            0x003070         0x66
+ .dinit           0x003070         0x66 data_init
 
-.text             0x003032         0x5a
- .text            0x003032         0x5a build/default/production/InOutSignals.o
-                  0x003032                  _ReadInSignals
-                  0x003044                  _WriteOutSignals
-                  0x003080                  _ReadOutSignals
+.text             0x0030d6         0xbc
+ .text            0x0030d6         0x62 build/default/production/ADC.o
+                  0x0030d6                  _InitADC
+                  0x0030f8                  _GetAnalogSignal
+ .text            0x003138         0x5a build/default/production/InOutSignals.o
+                  0x003138                  _ReadInSignals
+                  0x00314a                  _WriteOutSignals
+                  0x003186                  _ReadOutSignals
