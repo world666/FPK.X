@@ -8,6 +8,8 @@ char vsl[3];
 char vsp[3];
 char reg1[3];
 char reg2[3];
+char TP = 0;
+char tp[3];
 
 void MakeControl(char inputData, char outputData)
 {
@@ -21,7 +23,7 @@ void MakeControl(char inputData, char outputData)
     char V = outputData&0x2;
     char N = outputData&0x4;
     //V - ??????
-    if(!N && POV && (VSL || (regim1==0 && regim2==0)) && ((SKARV && (regim1==0 && regim2>0)) || ((regim1>0 && regim2==0)&& (V || (PUSK && !VSP)))))
+    if(!N && POV && (VSL || (regim1==0 && regim2==0)) && ((SKARV && (regim1==0 && regim2>0)) || ((regim1>0 && regim2==0)&& (V || (PUSK && !VSP)))) && TP)
     {
         //if(V == 0)
         WriteOutSignals(0b00000010, 0b00000010);
@@ -34,7 +36,7 @@ void MakeControl(char inputData, char outputData)
         V = 0;
     }
     //N - ?????
-    if(!V && PON && (VSP || (regim1==0 && regim2==0)) && ((SKARN && (regim1==0 && regim2>0)) || ((regim1>0 && regim2==0)&& (N || (PUSK && !VSL)))))
+    if(!V && PON && (VSP || (regim1==0 && regim2==0)) && ((SKARN && (regim1==0 && regim2>0)) || ((regim1>0 && regim2==0)&& (N || (PUSK && !VSL)))) && TP)
     {
         //if(N == 0)
         WriteOutSignals(0b00000100, 0b00000100);
@@ -73,4 +75,19 @@ void ParseTPDO3(unsigned int sid, unsigned char* data)
         regim2 = reg2[0];
     else if(reg2[2] == reg2[1])
         regim2 = reg2[1];
+}
+
+void ParseTPDO4(unsigned int sid, unsigned char* data)
+{
+    if((sid&0x780)!=0x480)//if it's not TPDO4
+        return;
+    if((sid&0x7)==0x7)//if it's FPK3
+    {
+        char vio0 = ~data[0];
+        tp[2] = tp[1]; tp[1] = tp[0]; tp[0] = vio0&0x1;
+        if(tp[1] == tp[0] || tp[0] == tp[2])
+            TP = tp[0];
+        else if(tp[2] == tp[1])
+            TP = tp[1];
+    }
 }
