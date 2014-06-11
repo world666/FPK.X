@@ -145,6 +145,7 @@ void __attribute__ ((__interrupt__, __auto_psv__)) _C1Interrupt (void){
     if(sId == 0x600 + _nodeId)
         CanOpenParseRSDO(sId, rxData, 1); //parse RSDO message and send response
     ParseTPDO1(sId, rxData);//parse TPDO1 message
+    ParseTPDO2(sId, rxData);//parse TPDO2 message
     ParseTPDO3(sId, rxData);//parse TPDO3 message
     ParseTPDO4(sId, rxData);//parse TPDO4 message
     maj_i++;
